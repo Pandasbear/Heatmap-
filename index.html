@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Stock Heat Map</title>
+  <script src="https://code.highcharts.com/highcharts.js"></script>
+</head>
+<body>
+  <div id="container" style="height: 400px; width: 800px;"></div>
+
+  <script>
+    // Create an array of objects representing the stock data
+    const stockData = [
+      { name: "Company A", price: 100 },
+      { name: "Company B", price: 120 },
+      { name: "Company C", price: 90 },
+      { name: "Company D", price: 110 },
+      { name: "Company E", price: 130 },
+    ];
+
+    // Create a heat map using the Highcharts library
+    Highcharts.chart("container", {
+      chart: {
+        type: "heatmap",
+      },
+      title: {
+        text: "Stock Heat Map for the German Market",
+      },
+      xAxis: {
+        categories: stockData.map(stock => stock.name),
+      },
+      yAxis: {
+        categories: ["Price"],
+      },
+      colorAxis: {
+        min: 0,
+        max: 150,
+      },
+      series: [
+        {
+          name: "Price",
+          data: stockData.map(stock => [stock.name, "Price", stock.price]),
+          dataLabels: {
+            enabled: true,
+            color: "#000000",
+          },
+        },
+      ],
+    });
+  </script>
+</body>
+</html>
